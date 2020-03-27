@@ -1,4 +1,8 @@
-
+/*題目內容:
+从键盘输入三个整数，然后按照从小到大的顺序将其输出。
+输入输出说明:
+输入：3 2 1
+输出：1 2 3 */
 import java.util.Arrays;
 import java.util.Scanner;
 
