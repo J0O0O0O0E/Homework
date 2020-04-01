@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /*題目內容:
 
 编写一个模拟超市购物程序。购物时，如果购物者要购买的商品在超市中有，则提示“购物者买到了某商品”；如果没有所需的商品，则提示“购物者所需某商品无货”。该程序涉及商品、超市、购物者三个类，具体要求如下：
@@ -14,6 +16,105 @@
 输出：张乐买到了电视机
 
 */
-public class Main {
+class Product {
+	private String name;
 
+	public Product(String name) {
+		super();
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+}
+
+class Market {
+	String name;
+	Product products[];
+
+	public Market(String name) {
+		super();
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Product[] getProduct() {
+		return products;
+	}
+
+	public void setProduct(Product[] product) {
+		this.products = product;
+	}
+
+	public Product sell(String ProductName) {
+		for (Product i : products) {
+			if (ProductName.equals(i.getName())) {
+				return i;
+			}
+		}
+		return null;
+	}
+
+}
+
+class Person {
+	String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Product Shopping(Market market, String productname) {
+		return market.sell(productname);
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		Product 电视机 = new Product("电视机");
+		Product 洗衣机 = new Product("洗衣机");
+		Product 豆浆机 = new Product("豆浆机");
+		Product 打印机 = new Product("打印机");
+		Product 计算机 = new Product("计算机");
+		Market 家乐福 = new Market("家乐福");
+		家乐福.setProduct(new Product[] { 电视机, 洗衣机, 豆浆机, 打印机 });
+		Market 家家乐福 = new Market("家家乐福");
+		家家乐福.setProduct(new Product[] { 电视机, 洗衣机, 豆浆机, 打印机, 计算机 });
+		Person consumer = new Person();
+		consumer.setName("张乐");
+		String marketname = in.next();
+		if (marketname.equals("家乐福")) {
+			Product a = consumer.Shopping(家乐福, in.next());
+			if (a != null) {
+				System.out.println(consumer.getName() + "买到了" + a.getName());
+			} else {
+				System.out.println(consumer.getName() + "所需商品无货");
+			}
+		}
+		if (marketname.equals("家家乐福")) {
+			Product a = consumer.Shopping(家家乐福, in.next());
+			if (a != null) {
+				System.out.println(consumer.getName() + "买到了" + a.getName());
+			} else {
+				System.out.println(consumer.getName() + "所需商品无货");
+			}
+		}
+	}
 }
