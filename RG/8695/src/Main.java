@@ -49,7 +49,6 @@ class Student extends Person {
 		// TODO Auto-generated method stub
 		System.out.println("I name is:" + super.getName());
 	}
-
 }
 
 public class Main {
