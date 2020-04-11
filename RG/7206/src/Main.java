@@ -1,3 +1,4 @@
+
 /*題目內容:
 
 输入一个字符串,在输入一个字符
@@ -20,8 +21,8 @@ import java.util.*;
 public class Main {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		String s=in.next();
-		s=s.replace(in.next(), "");
+		String s = in.next();
+		s = s.replace(in.next(), "");
 		System.out.println(s);
 		System.out.println((new StringBuffer(s)).reverse());
 	}

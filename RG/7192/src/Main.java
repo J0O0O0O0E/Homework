@@ -1,3 +1,4 @@
+
 /*題目內容:
 
 有如下类:
@@ -27,34 +28,38 @@ A6
 
 */
 import java.util.Scanner;
+
 interface Paper {
-    public String GetName();
+	public String GetName();
 
 }
 
 class Printer {
-    public void Print(Paper p) {
-            System.out.println(p.GetName());
-    }
+	public void Print(Paper p) {
+		System.out.println(p.GetName());
+	}
 }
-class A4Paper implements Paper{
+
+class A4Paper implements Paper {
 
 	@Override
 	public String GetName() {
 		// TODO Auto-generated method stub
 		return "A4";
 	}
-	
+
 }
-class A6Paper implements Paper{
+
+class A6Paper implements Paper {
 
 	@Override
 	public String GetName() {
 		// TODO Auto-generated method stub
 		return "A6";
 	}
-	
+
 }
+
 public class Main {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
