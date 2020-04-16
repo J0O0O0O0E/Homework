@@ -16,11 +16,16 @@ public class Main {
 		usersSet.add(user4);
 		usersSet.add(user5);
 		usersSet.add(user6);
-		if(User.setTolist(usersSet) instanceof  java.util.List) {
-				System.out.println("List类型:");
-			}
+		if (usersSet instanceof java.util.Set) {
+			System.out.println("Set类型:");
+		}
+		usersSet.forEach(u -> {
+			u.getInfo();
+		});
+		if (User.setTolist(usersSet) instanceof java.util.List) {
+			System.out.println("List类型:");
+		}
 		User.setTolist(usersSet).forEach(u -> {
-			
 			u.getInfo();
 		});
 	}
