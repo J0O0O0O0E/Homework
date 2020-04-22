@@ -16,14 +16,8 @@ public class Main {
 		usersSet.add(user4);
 		usersSet.add(user5);
 		usersSet.add(user6);
-		System.out.println("Ô­Set:");
 		usersSet.forEach(u -> {
-			u.getInfo();
-		});
-		usersSet = User.remove(1, usersSet);
-		System.out.println("É¾³ý1ºÅ:");
-		usersSet.forEach(u -> {
-			u.getInfo();
+			u.getInfo();;
 		});
 	}
 }
@@ -52,16 +46,5 @@ class User {
 
 	public void getInfo() {
 		System.out.println("\t" + getId() + " " + getCity() + " " + getName());
-	}
-
-	public static Set<User> remove(int id, Set<User> users) {
-		Iterator<User> it = users.iterator();
-		while (it.hasNext()) {
-			User user = it.next();
-			if (user.id == id) {
-				it.remove();
-			}
-		}
-		return users;
 	}
 }
