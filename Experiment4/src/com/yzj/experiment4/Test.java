@@ -11,11 +11,11 @@ public class Test {
 	private static StudentService service = new StudentServiceImpl();
 
 	public static void main(String[] args) {
-		 //testAddStudent();
-		 //testListStudentsByYear();
-		//testListStudentsNames();
-		 testMapStudentsBySex();
-		//testRemoveStudent();
+		// testAddStudent();
+		// testListStudentsByYear();
+		// testListStudentsNames();
+		testMapStudentsBySex();
+		// testRemoveStudent();
 	}
 
 	private static void testAddStudent() { // ----------Ìí¼ÓÑ§Éú-------------
