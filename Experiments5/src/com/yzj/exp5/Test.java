@@ -10,11 +10,13 @@ import java.util.Optional;
 
 public class Test {
 	public static void main(String[] args) {
-		// System.out.println("查询8888\n"+getCourseName(DatabaseUtils.getStudents(),8888));
-		// System.out.println("查询201001\n"+getCourseName(DatabaseUtils.getStudents(),201001));
-		System.out.println("查询学生201001教师1002");
+		System.out.println("查询8888(实际不存在)\n" + getCourseName(DatabaseUtils.getStudents(), 8888));
+		System.out.println("查询201001(实际存在)\n" + getCourseName(DatabaseUtils.getStudents(), 201001));
+		System.out.println("查询学生201001教师1002(老师实际不存在)");
 		printCollegeName(DatabaseUtils.getStudents(), 201001, 1002);
-		System.out.println("查询学生201001教师1001");
+		System.out.println("查询学生201011教师1001(学生实际不存在)");
+		printCollegeName(DatabaseUtils.getStudents(), 201001, 1002);
+		System.out.println("查询学生201001教师1001(都实际存在)");
 		printCollegeName(DatabaseUtils.getStudents(), 201001, 1001);
 	}
 
@@ -26,9 +28,14 @@ public class Test {
 	 * @return
 	 */
 	private static String getCourseName(List<Student> student, int sNumber) {
-
-		Optional<Student> stu = student.stream().filter(i -> sNumber == i.getNumber()).findAny();
-		return stu.map(i -> i.getTeacher()).map(j -> j.getCollege()).orElse(new College("未知学院")).getName();
+		/*
+		 * //方法一 Optional<Student> stu = student.stream().filter(i -> sNumber ==
+		 * i.getNumber()).findAny(); return stu.map(i -> i.getTeacher()).map(j ->
+		 * j.getCollege()).orElse(new College("未知学院")).getName();
+		 */
+		// 方法二
+		return student.stream().filter(i -> i.getNumber() == sNumber).findAny().map(Student::getTeacher)
+				.map(Teacher::getCollege).map(College::getName).orElse("未知学院");
 	}
 
 	/**
@@ -39,9 +46,15 @@ public class Test {
 	 * @param tNumber
 	 */
 	private static void printCollegeName(List<Student> students, int sNumber, int tNumber) {
-		Optional<Student> stu = students.stream()
-				.filter(i -> i.getNumber() == sNumber && i.getTeacher().getNumber() == tNumber).findAny();
-		System.out.println(stu.map(i -> i.getTeacher()).map(j -> j.getCollege()).orElse(new College("未知学院")).getName());
+		// 方法一
+		// Optional<Student> stu = students.stream().filter(i -> i.getNumber() ==
+		// sNumber && i.getTeacher().getNumber() == tNumber).findAny();
+		// System.out.println(stu.map(i -> i.getTeacher()).map(j ->
+		// j.getCollege()).orElse(new College("未知学院")).getName());
+		// 方法二
+		System.out.println(students.stream()
+				.filter(i -> i.getNumber() == sNumber && i.getTeacher().getNumber() == tNumber).findAny()
+				.map(Student::getTeacher).map(Teacher::getCollege).map(College::getName).orElse("未知学院"));
 	}
 
 }
