@@ -19,7 +19,6 @@ public class IOTest {
 		createFile(fileName);
 
 		System.out.println("--------- 将字符串写入文件 ---------");
-		// \r\n在txt文本中换行
 		String str = "白日依山尽\r\n" + "黄河入海流\r\n" + "欲穷千里目\r\n" + "更上一层楼\r\n";
 		writeToFile(fileName, str);
 
@@ -29,7 +28,7 @@ public class IOTest {
 
 		System.out.println("--------- 基于NIO实现文件的复制 ---------");
 		String toFile2 = "C:/Users/joe42/Desktop/Exp8/yzj_exp8_Copy_NIO.txt";
-		copyByIO(fileName, toFile2);
+		copyByNIO(fileName, toFile2);
 
 		System.out.println("--------- 删除指定文件 ---------");
 		deleteFile(toFile);
