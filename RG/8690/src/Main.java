@@ -12,29 +12,28 @@ import java.util.List;
 
 class Bridge implements Runnable {
 
-	 public synchronized void run() {
+	public synchronized void run() {
 		System.out.println(Thread.currentThread().getName() + "开始过桥!");
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		System.out.println(Thread.currentThread().getName() + "已过桥!");
 	}
 }
+
 public class Main {
 	public static void main(String[] args) {
 		Bridge bridge = new Bridge();
 		List<String> list = new ArrayList<String>();
 		for (int i = 'A'; i <= 'J'; i++) {
-		    list.add(String.valueOf((char)i));
+			list.add(String.valueOf((char) i));
 		}
-		while (list.size()!=0) {
+		while (list.size() != 0) {
 			int index = (int) (Math.random() * list.size());
-			new Thread(bridge,list.get(index)).start();
+			new Thread(bridge, list.get(index)).start();
 			list.remove(index);
 		}
 	}
 }
-
-
