@@ -16,7 +16,7 @@ class Bridge implements Runnable {
 		synchronized (this) {
 			System.out.println(Thread.currentThread().getName() + "¿ªÊ¼¹ýÇÅ!");
 			try {
-				Thread.sleep(50);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
