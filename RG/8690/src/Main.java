@@ -12,14 +12,16 @@ import java.util.List;
 
 class Bridge implements Runnable {
 
-	public synchronized void run() {
-		System.out.println(Thread.currentThread().getName() + "开始过桥!");
-		try {
-			Thread.sleep(50);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	public void run() {
+		synchronized (this) {
+			System.out.println(Thread.currentThread().getName() + "开始过桥!");
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println(Thread.currentThread().getName() + "已过桥!");
 		}
-		System.out.println(Thread.currentThread().getName() + "已过桥!");
 	}
 }
 
