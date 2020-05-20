@@ -1,19 +1,18 @@
-
-/*é¡Œç›®å…§å®¹:
-ä»é”®ç›˜è¾“å…¥ä¸€ä¸ªå¤§äº1æ­£æ•´æ•°nï¼Œè¾“å‡ºnä»¥å†…çš„ç´ æ•°
-è¾“å…¥è¾“å‡ºè¯´æ˜:
-è¯·è¾“ï¼š5
-è¾“å‡ºï¼š2 3 5
-è¯·è¾“ï¼š0
-è¾“å‡ºï¼šè¾“å…¥nä¸æ˜¯å¤§äº1æ­£æ•´æ•°*/
+/*î}Ä¿ƒÈÈİ:
+´Ó¼üÅÌÊäÈëÒ»¸ö´óÓÚ1ÕıÕûÊın£¬Êä³önÒÔÄÚµÄËØÊı
+ÊäÈëÊä³öËµÃ÷:
+ÇëÊä£º5
+Êä³ö£º2 3 5
+ÇëÊä£º0
+Êä³ö£ºÊäÈën²»ÊÇ´óÓÚ1ÕıÕûÊı*/
 import java.util.*;
 
 public class Main {
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 		Scanner input = new Scanner(System.in);
 		int n = input.nextInt();
 		if (n < 2) {
-			System.out.println("è¾“å…¥nä¸æ˜¯å¤§äº1æ­£æ•´æ•°");
+			System.out.println("ÊäÈën²»ÊÇ´óÓÚ1ÕıÕûÊı");
 		} else {
 			for (int i = 2; i <= n; i++) {
 				int flag = 0;

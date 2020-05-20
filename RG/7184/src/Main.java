@@ -1,36 +1,42 @@
-/*é¡Œç›®å…§å®¹:
-ä»é”®ç›˜è¾“å…¥â€œåœ†å½¢â€æˆ–â€œçŸ©å½¢â€ï¼Œæ ¹æ®è¾“å…¥å†…å®¹å†è¾“å…¥å¿…è¦çš„å‚æ•°ï¼Œè®¡ç®—åœ†å½¢æˆ–çŸ©å½¢çš„é¢ç§¯å¹¶è¾“å‡ºã€‚
-è¾“å…¥è¾“å‡ºè¯´æ˜:
-è¾“å…¥:åœ†å½¢ 10 
-è¾“å‡º:åœ†å½¢é¢ç§¯=314.0
-è¾“å…¥:çŸ©å½¢ 2 5
-è¾“å‡º:çŸ©å½¢é¢ç§¯=10.0
-è¾“å…¥:æ¢¯å½¢
-è¾“å‡º:è¾“å…¥çš„ä¸æ˜¯åœ†å½¢æˆ–çŸ©å½¢*/
+/*î}Ä¿ƒÈÈİ:
+
+´Ó¼üÅÌÊäÈë¡°Ô²ĞÎ¡±»ò¡°¾ØĞÎ¡±£¬¸ù¾İÊäÈëÄÚÈİÔÙÊäÈë±ØÒªµÄ²ÎÊı£¬¼ÆËãÔ²ĞÎ»ò¾ØĞÎµÄÃæ»ı²¢Êä³ö¡£
+
+ÊäÈëÊä³öËµÃ÷:
+
+ÊäÈë:Ô²ĞÎ 10 
+Êä³ö:Ô²ĞÎÃæ»ı=314.0
+ÊäÈë:¾ØĞÎ 2 5
+Êä³ö:¾ØĞÎÃæ»ı=10.0
+ÊäÈë:ÌİĞÎ
+Êä³ö:ÊäÈëµÄ²»ÊÇÔ²ĞÎ»ò¾ØĞÎ
+
+*/
 import java.util.*;
 
 public class Main {
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 		Scanner input = new Scanner(System.in);
 		String name = input.next();
+		
 		switch (name) {
-		case "åœ†å½¢": {
+		case "Ô²ĞÎ": {
 			float value = (float) input.nextDouble();
-			System.out.println("åœ†å½¢é¢ç§¯=" + 3.14 * Math.pow(value, 2));
+			System.out.println("Ô²ĞÎÃæ»ı=" + 3.14 * Math.pow(value, 2));
 			break;
 		}
-		case "çŸ©å½¢": {
+		case "¾ØĞÎ": {
 			float value = (float) input.nextDouble();
 			float value2 = (float) input.nextDouble();
-			System.out.println("çŸ©å½¢é¢ç§¯=" + value * value2);
+			System.out.println("¾ØĞÎÃæ»ı=" + value * value2);
 			break;
 		}
-		case "æ¢¯å½¢": {
-			System.out.println("è¾“å…¥çš„ä¸æ˜¯åœ†å½¢æˆ–çŸ©å½¢");
+		case "ÌİĞÎ": {
+			System.out.println("ÊäÈëµÄ²»ÊÇÔ²ĞÎ»ò¾ØĞÎ");
 			break;
 		}
 		default: {
-			System.out.println("è¾“å…¥çš„ä¸æ˜¯åœ†å½¢æˆ–çŸ©å½¢");
+			System.out.println("ÊäÈëµÄ²»ÊÇÔ²ĞÎ»ò¾ØĞÎ");
 		}
 		}
 		input.close();
