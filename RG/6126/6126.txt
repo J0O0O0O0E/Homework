@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+#define MAX 100
+using  namespace std;
+int n;                               //城市个数
+int a[MAX][MAX];                   //城市间距离
+int x[MAX];                       //记录路径
+int bestx[MAX]  = {0};           //记录最优路径
+int bestp = 63355;              //最短路径长
+int cp = 0;                    //当前路径长
+void backpack(int t){
+     if(t>n){
+        if((a[x[n]][1])&&(a[x[n]][1]+cp<bestp)){
+              bestp = a[x[n]][1]+cp;
+              for(int i = 1;i<=n;i++){
+                 bestx[i] = x[i];
+              }
+        }
+     }else{
+         for(int i = t;i<=n;i++){
+             /*约束为当前节点到下一节点的长度不为0,限界为走过的长度+当前要走的长度之和小于最优长度*/
+            if((a[x[t-1]][x[i]])&&(cp+a[x[t-1]][x[i]]<bestp)){
+                swap(x[t],x[i]);
+                cp+=a[x[t-1]][x[t]];
+                backpack(t+1);
+                cp-=a[x[t-1]][x[t]];
+                swap(x[t],x[i]);
+            }
+         }
+    }
+}
+int main(){
+    cin>>n;      //顶点数
+    for(int i = 1;i<=n;i++){
+         x[i] = i;
+    }
+    for(int i = 1;i<=n;i++){
+        for(int j = 1;j<=n;j++){
+            cin>>a[i][j];
+        }
+    }
+    backpack(2);
+    cout<<bestp<<endl;
+    for(int i = 1;i<=n;i++){
+       cout<<bestx[i]<<" ";
+    }
+    return 0;
+}

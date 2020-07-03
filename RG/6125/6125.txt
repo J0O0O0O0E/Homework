@@ -1,0 +1,107 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+const int maxn=99;
+int n,c;
+int w[maxn],v[maxn];
+int bestv=0;
+int bestx[maxn];
+int total=1;
+struct nodetype
+{
+
+    int no,i,w,v,x[maxn];
+    double ub;
+};
+void input()
+{
+    cin>>c;
+    cin>>n;
+    for(int i=1;i<=n;i++)
+        cin>>w[i];
+        for(int i=1;i<=n;i++)
+            cin>>v[i];
+}
+void bound(nodetype &e)
+{
+    int i=e.i+1;
+    int sumw=e.w;
+    double sumv=e.v;
+    while((sumw+w[i]<=c)&&i<=n)
+    {
+        sumw+=w[i];
+        sumv+=v[i];
+        i++;
+    }
+    if(i<=n)
+        e.ub=sumv+(c-sumw)*v[i]/w[i];
+    else
+    e.ub=sumv;
+}
+void enqueue(nodetype e,queue<nodetype> &qu)
+{
+    if(e.i==n)
+    {
+        if(e.v>bestv)
+        {
+            bestv=e.v;
+            for(int j=1;j<=n;j++)
+                bestx[j]=e.x[j];
+        }
+    }
+    else qu.push(e);
+}
+void bfs()
+{
+    int j;
+    nodetype e,e1,e2;
+    queue<nodetype> qu;
+    e.i=0;
+    e.w=0;
+    e.v=0;
+    e.no=total++;
+    for(j=1;j<=n;j++)
+        e.x[j]=0;
+    bound(e);
+    qu.push(e);
+    while(!qu.empty())
+    {
+        e=qu.front();
+        qu.pop();
+        if(e.w+w[e.i+1]<=c)
+        {
+            e1.no=total++;
+            e1.i=e.i+1;
+            e1.w=e.w+w[e1.i];
+            e1.v=e.v+v[e1.i];
+            for(j=1;j<=n;j++)
+                e1.x[j]=e.x[j];
+            e1.x[e1.i]=1;
+            bound(e1);
+            enqueue(e1,qu);
+        }
+        e2.no=total++;
+        e2.i=e.i+1;
+        e2.w=e.w;
+        e2.v=e.v;
+        for(j=1;j<=n;j++)
+                e2.x[j]=e.x[j];
+            e2.x[e2.i]=0;
+            bound(e2);
+        if(e2.ub>bestv)
+            enqueue(e2,qu);
+    }
+}
+void output()
+{
+    cout<<bestv<<endl;
+    for(int i=1;i<=n;i++)
+        cout<<bestx[i]<<" ";
+}
+int main()
+{
+    input();
+    bfs();
+    output();
+    return 0;
+}
