@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int N=110;
+int n,cnt,a[N][N],dp[N][N],ans[N];
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=i;j++)
+        {
+            cin>>a[i][j];
+            dp[i][j]=max(dp[i-1][j],dp[i-1][j-1])+a[i][j];
+        }
+    }
+    int mx=0;// 第n行最大值
+    int k;// 最大值对应列下标
+    for(int i=1;i<=n;i++)
+    {
+        if(dp[n][i]>mx)
+        {
+            mx=dp[n][i];
+            k=i;
+        }
+    }
+    printf("%d\n",mx);
+    int x=n,y=k;
+    while(x&&y) // x=0 or y=0 end while
+    {
+        ans[++cnt]=a[x][y];
+        mx-=a[x][y];
+        if(mx==dp[x-1][y])
+        {
+            x--;
+        }
+        else
+        {
+            x--;
+            y--;
+        }
+    }
+    for(int i=cnt;i>=1;i--) // 倒序输出
+        i==1?printf("%d\n",ans[i]):printf("%d ",ans[i]);
+    return 0;
+}

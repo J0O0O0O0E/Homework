@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int N=110;
+char a[N],b[N];
+int n,m,dp[N][N];
+bool flag=0;
+void get_LCS(int i,int j,string s) // 字符串s记录最长公共子序列的路径
+{
+    //printf("i=%d j=%d s=%s\n",i,j,s.c_str());
+    if(flag)return;
+    if(i==0||j==0)
+    {
+        cout<<s.assign(s.rbegin(),s.rend())<<endl;
+        flag=1;
+        return;
+    }
+    if(a[i]==b[j])
+    {
+        get_LCS(i-1,j-1,s+a[i]);
+    }
+    else
+    {
+        if(dp[i][j]==dp[i-1][j])
+        {
+            get_LCS(i-1,j,s);
+        }
+        if(dp[i][j]==dp[i][j-1])
+        {
+            get_LCS(i,j-1,s);
+        }
+    }
+}
+void get_dp()
+{
+    memset(dp,0,sizeof(dp));
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=m;j++)
+        {
+            if(a[i]==b[j])dp[i][j]=dp[i-1][j-1]+1;
+            else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+        }
+    }
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin>>n>>m>>a+1>>b+1;
+    get_dp();
+    get_LCS(n,m,"");
+    return 0;
+}

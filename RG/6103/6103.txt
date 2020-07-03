@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+int split( int a[], int b[], int p, int mid, int r )
+{
+    int	i = p;
+	int	m = mid;
+	int	n = r;
+	int	j = mid + 1;
+	int	k = 0;
+	while ( i <= m && j <= n )
+	{
+		if ( a[i] < a[j] )
+			b[k++] = a[i++];
+		else
+			b[k++] = a[j++];
+	}
+	while ( i <= m )
+		b[k++] = a[i++];
+	while ( j <= n )
+		b[k++] = a[j++];
+	for ( i = 0; i < k; i++ )
+		a[p + i] = b[i];
+}
+
+int method( int a[], int b[], int p, int r )
+{
+	if ( p < r )
+	{
+		int mid = (p + r) / 2;
+		method( a, b, p, mid );
+		method( a, b, mid + 1, r );
+		split( a, b, p, mid, r );
+	}
+}
+
+
+int main()
+{
+	int	a[100], b[100];
+	int	n;
+	scanf( "%d", &n );
+	int i, j;
+	for ( i = 0; i < n; i++ )
+		scanf( "%d", &a[i] );
+	method( a, b, 0, n - 1 );
+	for ( j = 0; j < n; j++ )
+		printf( "%d ", a[j] );
+	return(0);
+}

@@ -1,0 +1,50 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+    int n,k;
+
+	cin >> n;
+	
+	cin >> k;
+
+	int a[100] = {0};
+	int b[100] = {0};//存放在第几号加油站加过油
+	for(int j=1;j<=k+1;j++)
+        cin>>a[j];
+	//cout << a <<endl;
+	int sum=0;//记录加油次数 
+	int temp=0;//记录汽车行驶的距离
+	int t=0; 
+	int wei=0;
+
+	for(int i=1;i<=k+1;i++)
+	{
+		if(a[i]>n)//如果某两个加油站之间的距离大于汽车油箱最大行驶距离
+			cout << "汽车不可到达目的地！"<<endl;
+		else
+		{
+		  temp+=a[i];
+		  if(temp==n)
+		  {
+			  sum++;
+			  temp=0;
+			  b[t]=i;
+			  t++;
+			} 
+		  if(temp>n)
+		  {
+		  sum++;
+		  temp=a[i];//表示已经行驶了两个加油站之间的距离
+		  b[t]=i-1;
+		  t++; 
+		  } 
+		} 
+	} 
+	cout<<sum<<endl;
+	
+return 0;
+}

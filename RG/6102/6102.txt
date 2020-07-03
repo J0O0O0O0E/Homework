@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+
+int    def[101][101] = { 0 };
+static int	t = 0;
+
+void chess( int a, int b, int aa, int bb, int length )
+{
+	if ( length == 1 )
+	{
+		return;
+	}
+	t++;
+	int	tem	= t;
+	int	l	= length / 2;
+
+	if ( aa < a + l && bb < b + l )
+	{
+		chess( a, b, aa, bb, l );
+	}else  {
+		def[a + l - 1][b + l - 1] = tem;
+		chess( a, b, a + l - 1, b + l - 1, l );
+	}
+	if ( aa < a + l && bb >= b + l )
+	{
+		chess( a, b + l, aa, bb, l );
+	}else  {
+		def[a + l - 1][b + l] = tem;
+		chess( a, b + l, a + l - 1, b + l, l );
+	}
+
+	if ( aa >= a + l && bb < b + l )
+	{
+		chess( a + l, b, aa, bb, l );
+	}else  {
+		def[a + l][b + l - 1] = tem;
+		chess( a + l, b, a + l, b + l - 1, l );
+	}
+
+
+	if ( aa >= a + l && bb >= b + l )
+	{
+		chess( a + l, b + l, aa, bb, l );
+	}else  {
+		def[a + l][b + l] = tem;
+		chess( a + l, b + l, a + l, b + l, l );
+	}
+}
+
+
+int main()
+{
+	int n, a, b, aa, bb, length, m;
+	cin >> length >> aa >> bb;
+	a	= b = 1;
+	m	= length;
+
+	chess( a, b, aa, bb, length );
+
+	for ( int i = 1; i <= m; i++ )
+	{
+		for ( int j = 1; j <= m; j++ )
+		{
+			cout.width( 2 );
+			cout << def[i][j] << " ";
+			if ( j == m )
+			{
+				cout << endl;
+			}
+		}
+	}
+}
